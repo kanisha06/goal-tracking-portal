@@ -1,0 +1,263 @@
+import { User, Goal, Comment, QuarterlyUpdate } from '@/types';
+
+// Current logged-in user (for demo purposes)
+export const currentUser: User = {
+  id: 'user-1',
+  name: 'Sarah Johnson',
+  email: 'sarah.johnson@company.com',
+  role: 'employee',
+  departmentId: 'dept-1',
+  managerId: 'user-2',
+};
+
+// Sample users
+export const users: User[] = [
+  {
+    id: 'user-1',
+    name: 'Sarah Johnson',
+    email: 'sarah.johnson@company.com',
+    role: 'employee',
+    departmentId: 'dept-1',
+    managerId: 'user-2',
+  },
+  {
+    id: 'user-2',
+    name: 'Michael Chen',
+    email: 'michael.chen@company.com',
+    role: 'manager',
+    departmentId: 'dept-1',
+  },
+  {
+    id: 'user-3',
+    name: 'Emily Rodriguez',
+    email: 'emily.rodriguez@company.com',
+    role: 'employee',
+    departmentId: 'dept-1',
+    managerId: 'user-2',
+  },
+  {
+    id: 'user-4',
+    name: 'James Wilson',
+    email: 'james.wilson@company.com',
+    role: 'admin',
+  },
+  {
+    id: 'user-5',
+    name: 'Lisa Anderson',
+    email: 'lisa.anderson@company.com',
+    role: 'employee',
+    departmentId: 'dept-2',
+    managerId: 'user-6',
+  },
+  {
+    id: 'user-6',
+    name: 'David Kumar',
+    email: 'david.kumar@company.com',
+    role: 'manager',
+    departmentId: 'dept-2',
+  },
+];
+
+// Sample goals for the current employee
+export const goals: Goal[] = [
+  {
+    id: 'goal-1',
+    employeeId: 'user-1',
+    employeeName: 'Sarah Johnson',
+    title: 'Implement new API authentication system',
+    description: 'Design and implement OAuth 2.0 authentication for all internal APIs to improve security and user experience.',
+    weightage: 25,
+    status: 'approved',
+    createdAt: new Date('2024-01-15'),
+    submittedAt: new Date('2024-01-20'),
+    approvedAt: new Date('2024-01-25'),
+    comments: [
+      {
+        id: 'comment-1',
+        managerId: 'user-2',
+        managerName: 'Michael Chen',
+        text: 'Great proposal! The security improvements are well thought out. Please ensure backward compatibility.',
+        createdAt: new Date('2024-01-25'),
+      },
+    ],
+    quarterlyUpdates: [
+      {
+        id: 'update-1',
+        quarter: 'Q1',
+        year: 2024,
+        progressPercentage: 45,
+        notes: 'Completed OAuth 2.0 design and started implementation. All core flows identified.',
+        createdAt: new Date('2024-03-15'),
+        updatedAt: new Date('2024-03-15'),
+      },
+      {
+        id: 'update-2',
+        quarter: 'Q2',
+        year: 2024,
+        progressPercentage: 85,
+        notes: 'Implementation 85% complete. Testing phase started. Backward compatibility verified.',
+        createdAt: new Date('2024-06-15'),
+        updatedAt: new Date('2024-06-15'),
+      },
+    ],
+  },
+  {
+    id: 'goal-2',
+    employeeId: 'user-1',
+    employeeName: 'Sarah Johnson',
+    title: 'Lead frontend performance optimization',
+    description: 'Reduce page load time by 40% through code splitting, lazy loading, and caching strategies.',
+    weightage: 20,
+    status: 'approved',
+    createdAt: new Date('2024-01-18'),
+    submittedAt: new Date('2024-01-22'),
+    approvedAt: new Date('2024-01-28'),
+    comments: [
+      {
+        id: 'comment-2',
+        managerId: 'user-2',
+        managerName: 'Michael Chen',
+        text: 'Excellent initiative. This aligns with our Q1 performance goals. Keep us updated on progress.',
+        createdAt: new Date('2024-01-28'),
+      },
+    ],
+    quarterlyUpdates: [
+      {
+        id: 'update-3',
+        quarter: 'Q1',
+        year: 2024,
+        progressPercentage: 60,
+        notes: 'Implemented code splitting and lazy loading. Initial tests show 25% improvement.',
+        createdAt: new Date('2024-03-20'),
+        updatedAt: new Date('2024-03-20'),
+      },
+    ],
+  },
+  {
+    id: 'goal-3',
+    employeeId: 'user-1',
+    employeeName: 'Sarah Johnson',
+    title: 'Mentor two junior developers',
+    description: 'Provide technical mentorship and guidance to junior team members to accelerate their growth.',
+    weightage: 15,
+    status: 'approved',
+    createdAt: new Date('2024-01-20'),
+    submittedAt: new Date('2024-01-25'),
+    approvedAt: new Date('2024-02-01'),
+    comments: [],
+    quarterlyUpdates: [],
+  },
+  {
+    id: 'goal-4',
+    employeeId: 'user-1',
+    employeeName: 'Sarah Johnson',
+    title: 'Document API endpoints and best practices',
+    description: 'Create comprehensive documentation for all REST API endpoints with examples and best practices guide.',
+    weightage: 20,
+    status: 'submitted',
+    createdAt: new Date('2024-02-01'),
+    submittedAt: new Date('2024-02-05'),
+    comments: [
+      {
+        id: 'comment-3',
+        managerId: 'user-2',
+        managerName: 'Michael Chen',
+        text: 'Good initiative. Please include error handling scenarios and rate limiting details.',
+        createdAt: new Date('2024-02-06'),
+      },
+    ],
+    quarterlyUpdates: [],
+  },
+  {
+    id: 'goal-5',
+    employeeId: 'user-1',
+    employeeName: 'Sarah Johnson',
+    title: 'Improve test coverage to 85%',
+    description: 'Increase unit test coverage from current 60% to 85% across all critical modules.',
+    weightage: 20,
+    status: 'draft',
+    createdAt: new Date('2024-02-10'),
+    comments: [],
+    quarterlyUpdates: [],
+  },
+];
+
+// Sample goals for other employees (for manager view)
+export const allEmployeeGoals: Goal[] = [
+  ...goals,
+  {
+    id: 'goal-6',
+    employeeId: 'user-3',
+    employeeName: 'Emily Rodriguez',
+    title: 'Implement data pipeline optimization',
+    description: 'Optimize data processing pipeline to reduce ETL time by 50%.',
+    weightage: 30,
+    status: 'approved',
+    createdAt: new Date('2024-01-15'),
+    submittedAt: new Date('2024-01-20'),
+    approvedAt: new Date('2024-01-25'),
+    comments: [],
+    quarterlyUpdates: [],
+  },
+  {
+    id: 'goal-7',
+    employeeId: 'user-3',
+    employeeName: 'Emily Rodriguez',
+    title: 'Lead database migration project',
+    description: 'Migrate legacy database to modern cloud infrastructure with zero downtime.',
+    weightage: 40,
+    status: 'submitted',
+    createdAt: new Date('2024-01-18'),
+    submittedAt: new Date('2024-01-23'),
+    comments: [
+      {
+        id: 'comment-4',
+        managerId: 'user-2',
+        managerName: 'Michael Chen',
+        text: 'Need more details on rollback strategy. Can we schedule a meeting?',
+        createdAt: new Date('2024-01-24'),
+      },
+    ],
+    quarterlyUpdates: [],
+  },
+  {
+    id: 'goal-8',
+    employeeId: 'user-3',
+    employeeName: 'Emily Rodriguez',
+    title: 'Improve team collaboration tools',
+    description: 'Implement and deploy new collaboration platform for better team communication.',
+    weightage: 30,
+    status: 'rejected',
+    createdAt: new Date('2024-01-20'),
+    submittedAt: new Date('2024-01-25'),
+    rejectionReason: 'This initiative overlaps with the IT department\'s current platform upgrade. Please coordinate with them.',
+    comments: [
+      {
+        id: 'comment-5',
+        managerId: 'user-2',
+        managerName: 'Michael Chen',
+        text: 'Please align with IT before submitting. They have a similar initiative in progress.',
+        createdAt: new Date('2024-01-26'),
+      },
+    ],
+    quarterlyUpdates: [],
+  },
+];
+
+// Sample locked goals (for admin view)
+export const lockedGoals: Goal[] = [
+  {
+    id: 'goal-9',
+    employeeId: 'user-5',
+    employeeName: 'Lisa Anderson',
+    title: 'Complete compliance training',
+    description: 'Complete all mandatory compliance and security training modules.',
+    weightage: 10,
+    status: 'locked',
+    createdAt: new Date('2024-01-10'),
+    submittedAt: new Date('2024-01-15'),
+    approvedAt: new Date('2024-01-20'),
+    comments: [],
+    quarterlyUpdates: [],
+  },
+];
